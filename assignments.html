@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignments - ADCA Course</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .gallery { display: flex; flex-wrap: wrap; gap: 10px; }
+        .gallery img { width: 200px; height: auto; border: 1px solid #ccc; }
+        .file-list { margin-top: 20px; }
+        .file-list ul { list-style-type: none; }
+        .file-list li { margin: 5px 0; }
+    </style>
 </head>
 <body>
     <header>
@@ -24,67 +32,31 @@
             <li>Week 2: Excel spreadsheet for budget tracking. Due: Jan 27.</li>
         </ul>
         <p>Submit via email or Google Forms link.</p>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website Gallery</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .gallery { display: flex; flex-wrap: wrap; gap: 10px; }
-        .gallery img { width: 200px; height: auto; border: 1px solid #ccc; }
-        .file-list { margin-top: 20px; }
-        .file-list ul { list-style-type: none; }
-        .file-list li { margin: 5px 0; }
-    </style>
-</head>
-<body>
-    <h1>My Website Directory</h1>
-    <p>This is a simple gallery. Add images to the 'images/' folder and update the list below.</p>
-    
-    <h2>Image Gallery</h2>
-    <div class="gallery">
-        <!-- Manually add image paths here. Example: -->
-        <img src="adca-websit/photo_2025-11-08_18-58-20 (2).jpg" alt="Photo 1">
-        <img src="Downloads/adca-websit/logos.jpg" alt="Photo 2"> 
-        <!-- Add more <img> tags as needed -->
-    </div>
-    
-    <h2>File List</h2>
-    <div class="file-list">
-        <ul>
-            <!-- Manually add file links here. Example: -->
-            <li><a href="files/document.pdf" target="_blank">Document.pdf</a></li>
-            <li><a href="files/video.mp4" target="_blank">Video.mp4</a></li>
-            <!-- Add more <li><a> tags as needed -->
-        </ul>
-    </div>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Files</title>
-</head>
-<body>
-    <h1>Upload Photos and Files</h1>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="fileToUpload" id="fileToUpload" multiple>
-        <input type="submit" value="Upload File" name="submit">
-    </form>
-    <p>Uploaded files will appear in the 'uploads/' folder.</p>
+
+        <h2>Image Gallery</h2>
+        <div class="gallery">
+            <!-- Aap images yahan add kar sakte hain -->
+            <img src="adca-websit/photo_2025-11-08_18-58-20 (2).jpg" alt="Photo 1">
+            <img src="Downloads/adca-websit/logos.jpg" alt="Photo 2"> 
+        </div>
+
+        <h2>File List</h2>
+        <div class="file-list">
+            <ul>
+                <li><a href="files/document.pdf" target="_blank">Document.pdf</a></li>
+                <li><a href="files/video.mp4" target="_blank">Video.mp4</a></li>
+            </ul>
+        </div>
+
+        <h2>Upload Photos and Files</h2>
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            <input type="file" name="fileToUpload" id="fileToUpload" multiple>
+            <input type="submit" value="Upload File" name="submit">
+        </form>
+        <p>Uploaded files will appear in the 'uploads/' folder.</p>
     </main>
     <footer>
         <p>&copy; 2023 ADCA Institute.</p>
     </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
