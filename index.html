@@ -3,21 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADCA Course Website</title>
+    <title>ADCA Course - Login Required</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <!-- Main Site Content (Hidden by Default) -->
+    <div id="main-content" style="display: none;">
+        <header>
+            <h1>ADCA Course</h1>
+            <p>Master Advanced Computer Applications with AI Assistance</p>
+            <button id="logout-btn" onclick="logout()">Logout</button>
+        </header>
+        <header>
         <h1>SURYA COMPUTER CLASSES</h1>
-        <nav>
+        <h2>
             <a href="index.html">Home</a>
             <a href="syllabus.html">Syllabus</a>
             <a href="resources.html">Resources</a>
             <a href="assignments.html">Assignments</a>
             <a href="contact.html">Contact</a>
-        </nav>
+        </h2>
     </header>
-    <main>
+        <main>
         <section>
             <h2>Welcome to ADCA Course</h2>
             <p>Master computer applications with hands-on training in MS Office, programming, databases,tally and more. Duration: 12 months. Mode: Online/Offline.</p>
@@ -27,33 +34,70 @@
         <section>
             <h2>Latest Announcements</h2>
             <p>Enrollments open! Classes start Jan 15. Check syllabus for details.</p>
-            <h2>Teacher Name</h2>
-            <p>Mr Chandan Sir.</p>
         </section>
-        <!-- Chatbot Container -->
-<div id="chatbot">
-    <div id="chat-icon" onclick="toggleChat()">💬</div>
-    <div id="chat-window">
-        <div id="chat-messages"></div>
-        <input type="text" id="chat-input" placeholder="Ask about ADCA course..." onkeypress="handleKeyPress(event)">
-        <button onclick="sendMessage()">Send</button>
+    </main> 
+        <section id="ai-features">
+            <h2>AI-Powered Tools</h2>
+            <button onclick="generateQuiz()">Generate AI Quiz</button>
+            <div id="quiz-output"></div>
+            <button onclick="suggestImage()">AI Image Suggestion</button>
+            <div id="image-suggestion"></div>
+        </section>
+        
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Email: c7motivational345@gmail.com | Phone: 7761969351</p>
+        </section>
+        
+        <!-- Chatbot -->
+        <div id="chatbot">
+            <div id="chat-icon" onclick="toggleChat()">🤖</div>
+            <div id="chat-window">
+                <div id="chat-messages"></div>
+                <input type="text" id="chat-input" placeholder="Ask AI about ADCA..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
     </div>
-</div>
-    </main>
-    <footer>
-        <p>&copy; 2025 ADCA Institute. All rights reserved.</p>
-    </footer>
+    
+    <!-- Login/Signup Section (Visible by Default) -->
+    <div id="auth-section">
+        <header>
+            <h1>ADCA Course - Login Required</h1>
+            <p>Please login or signup to access the site.</p>
+        </header>
+        
+        <section id="auth">
+            <div id="login-form">
+                <h2>1. Login</h2>
+                <form id="login">
+                    <label for="login-email">1. Email:</label>
+                    <input type="email" id="login-email" required>
+                    <label for="login-password">2. Password:</label>
+                    <input type="password" id="login-password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p id="login-message"></p>
+            </div>
+            
+            <div id="signup-form">
+                <h2>2. Signup (Step-by-Step)</h2>
+                <form id="signup">
+                    <label for="signup-name">1. Full Name:</label>
+                    <input type="text" id="signup-name" required>
+                    <label for="signup-email">2. Email:</label>
+                    <input type="email" id="signup-email" required>
+                    <label for="signup-password">3. Password:</label>
+                    <input type="password" id="signup-password" required>
+                    <label for="signup-confirm">4. Confirm Password:</label>
+                    <input type="password" id="signup-confirm" required>
+                    <button type="submit">Signup</button>
+                </form>
+                <p id="signup-message"></p>
+            </div>
+        </section>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
