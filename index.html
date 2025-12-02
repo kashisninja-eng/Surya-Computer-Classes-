@@ -30,6 +30,15 @@
             <h2>Teacher Name</h2>
             <p>Mr Chandan Sir.</p>
         </section>
+        <!-- Chatbot Container -->
+<div id="chatbot">
+    <div id="chat-icon" onclick="toggleChat()">💬</div>
+    <div id="chat-window">
+        <div id="chat-messages"></div>
+        <input type="text" id="chat-input" placeholder="Ask about ADCA course..." onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
     </main>
     <footer>
         <p>&copy; 2025 ADCA Institute. All rights reserved.</p>
@@ -37,6 +46,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
