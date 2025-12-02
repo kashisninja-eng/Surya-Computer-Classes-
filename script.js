@@ -55,4 +55,38 @@ function getAIResponse(message) {
 }
     alert('Message sent! (Note: This is a demo; integrate with a backend for real sending.)');
 
+});// Login/Signup Functionality (Demo with localStorage)
+document.getElementById('login').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(u => u.email === email && u.password === password);
+    if (user) {
+        document.getElementById('login-message').textContent = 'Login successful! Welcome, ' + user.name + '.';
+        // Redirect or show dashboard (for demo, just message)
+    } else {
+        document.getElementById('login-message').textContent = 'Invalid email or password.';
+    }
 });
+
+document.getElementById('signup').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('signup-name').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+    const confirm = document.getElementById('signup-confirm').value;
+    if (password !== confirm) {
+        document.getElementById('signup-message').textContent = 'Passwords do not match.';
+        return;
+    }
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    if (users.find(u => u.email === email)) {
+        document.getElementById('signup-message').textContent = 'Email already registered.';
+        return;
+    }
+    users.push({ name, email, password });
+    localStorage.setItem('users', JSON.stringify(users));
+    document.getElementById('signup-message').textContent = 'Signup successful! You can now login.';
+});
+
