@@ -6,4 +6,64 @@ footer { text-align: center; padding: 1rem; background: #333; color: white; }
 ul { list-style-type: disc; padding-left: 2rem; }
 form { margin-top: 1rem; }
 input, textarea { width: 100%; padding: 0.5rem; margin-bottom: 1rem; }
-button { background: #007bff; color: white; padding: 0.5rem; border: none; cursor: pointer; }
+button { background: #007bff; color: white; padding: 0.5rem; border: none; cursor: pointer; }/* Chatbot Styles */
+#chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#chat-icon {
+    width: 60px;
+    height: 60px;
+    background: #00ffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    transition: transform 0.3s;
+}
+
+#chat-icon:hover {
+    transform: scale(1.1);
+}
+
+#chat-window {
+    display: none;
+    width: 300px;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+}
+
+#chat-messages {
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+#chat-input {
+    width: 70%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+button {
+    padding: 5px 10px;
+    background: #00ffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
