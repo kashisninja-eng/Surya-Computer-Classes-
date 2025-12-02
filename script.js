@@ -1,8 +1,6 @@
-// Basic interactivity: Alert on form submit
-document.querySelector('form')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    // AI Chatbot Functionality
+// AI Chatbot with ChatGPT Integration
 let chatOpen = false;
+const API_KEY = 'YOUR_OPENAI_API_KEY_HERE'; // Replace with your actual API key (keep secret!)
 
 function toggleChat() {
     const window = document.getElementById('chat-window');
@@ -19,11 +17,8 @@ function sendMessage() {
     if (message) {
         addMessage('You: ' + message, 'user');
         input.value = '';
-        // Simulate AI response
-        setTimeout(() => {
-            const response = getAIResponse(message);
-            addMessage('AI Assistant: ' + response, 'ai');
-        }, 1000);
+        // Call ChatGPT API
+        getChatGPTResponse(message);
     }
 }
 
@@ -42,20 +37,54 @@ function addMessage(text, sender) {
     messages.scrollTop = messages.scrollHeight;
 }
 
-function getAIResponse(message) {
-    const responses = {
-        'what is adca': 'ADCA stands for Advanced Diploma in Computer Applications. It covers programming, databases, and more!',
-        'how to enroll': 'Contact us at info@adcacourse.com or call +1-234-567-890 to enroll.',
-        'course duration': 'The course lasts 6-12 months, depending on your pace.',
-        'features': 'Includes Python, Java, SQL, web dev, and AI modules.',
-        'default': 'I\'m here to help with ADCA course info. Try asking about enrollment or features!'
-    };
-    const key = message.toLowerCase();
-    return responses[key] || responses['default'];
+async function getChatGPTResponse(userMessage) {
+    try {
+        const response = await fetch('https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium', {  // Free GPT-like model
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${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}`,  // Use Hugging Face token here
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                inputs: {
+                    past_user_inputs: [],  // For conversation history (optional)
+                    generated_responses: [],
+                    text: userMessage
+                },
+                parameters: { max_length: 100, temperature: 0.7 }
+            })
+        });
+        const data = await response.json();
+        if (data && data.generated_text) {
+            addMessage('AI Assistant: ' + data.generated_text, 'ai');
+        } else {
+            addMessage('AI Assistant: Sorry, I couldn\'t process that. Try again!', 'ai');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        addMessage('AI Assistant: Error connecting to AI. Check your token or try later.', 'ai');
+    }
+}// Login Protection Logic
+function checkLoginStatus() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn === 'true') {
+        document.getElementById('auth-section').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+    } else {
+        document.getElementById('auth-section').style.display = 'block';
+        document.getElementById('main-content').style.display = 'none';
+    }
 }
-    alert('Message sent! (Note: This is a demo; integrate with a backend for real sending.)');
 
-});// Login/Signup Functionality (Demo with localStorage)
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    checkLoginStatus();
+}
+
+// Call on page load
+window.onload = checkLoginStatus;
+
+// Update login to set status
 document.getElementById('login').addEventListener('submit', function(e) {
     e.preventDefault();
     const email = document.getElementById('login-email').value;
@@ -63,13 +92,15 @@ document.getElementById('login').addEventListener('submit', function(e) {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     const user = users.find(u => u.email === email && u.password === password);
     if (user) {
+        localStorage.setItem('isLoggedIn', 'true');
         document.getElementById('login-message').textContent = 'Login successful! Welcome, ' + user.name + '.';
-        // Redirect or show dashboard (for demo, just message)
+        checkLoginStatus(); // Show main content
     } else {
         document.getElementById('login-message').textContent = 'Invalid email or password.';
     }
 });
 
+// Update signup to set status after signup
 document.getElementById('signup').addEventListener('submit', function(e) {
     e.preventDefault();
     const name = document.getElementById('signup-name').value;
@@ -87,6 +118,7 @@ document.getElementById('signup').addEventListener('submit', function(e) {
     }
     users.push({ name, email, password });
     localStorage.setItem('users', JSON.stringify(users));
-    document.getElementById('signup-message').textContent = 'Signup successful! You can now login.';
+    localStorage.setItem('isLoggedIn', 'true'); // Auto-login after signup
+    document.getElementById('signup-message').textContent = 'Signup successful! Logging you in...';
+    checkLoginStatus(); // Show main content
 });
-
