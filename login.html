@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADCA Course - Login/Signup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>ADCA Course Login/Signup</h1>
+        <p>Access your account or join the course</p>
+        <a href="index.html">Back to Home</a>
+    </header>
+    
+    <section id="auth">
+        <div id="login-form">
+            <h2>1. Login</h2>
+            <form id="login">
+                <label for="login-email">1. Email:</label>
+                <input type="email" id="login-email" required>
+                <label for="login-password">2. Password:</label>
+                <input type="password" id="login-password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p id="login-message"></p>
+        </div>
+        
+        <div id="signup-form">
+            <h2>2. Signup (Step-by-Step)</h2>
+            <form id="signup">
+                <label for="signup-name">1. Full Name:</label>
+                <input type="text" id="signup-name" required>
+                <label for="signup-email">2. Email:</label>
+                <input type="email" id="signup-email" required>
+                <label for="signup-password">3. Password:</label>
+                <input type="password" id="signup-password" required>
+                <label for="signup-confirm">4. Confirm Password:</label>
+                <input type="password" id="signup-confirm" required>
+                <button type="submit">Signup</button>
+            </form>
+            <p id="signup-message"></p>
+        </div>
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+</html>
