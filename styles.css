@@ -1,0 +1,244 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #004d80 0%, #4b0082 100%); /* Dark sky blue to dark purple gradient */
+    background-attachment: fixed;
+    background-size: cover;
+    color: #ffffff; /* White font for body text */
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, #6a0dad 0%, #00bfff 100%); /* Purple to sky blue gradient for home page */
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(106, 13, 173, 0.9); /* Purple nav overlay */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 30px; /* Space between menu options */
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #add8e6; /* Light blue hover */
+}
+
+section {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent sections */
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#about {
+    background-color: rgba(75, 0, 130, 0.7); /* Dark purple for about */
+}
+
+#features ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#features li {
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+#features li:hover {
+    transform: translateY(-2px); /* Mild lift */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #ffffff; /* White labels */
+}
+
+input, textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff; /* White text in inputs */
+    transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-color: #add8e6; /* Light blue focus */
+    outline: none;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #6a0dad; /* Purple button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #5a0b9a; /* Darker purple */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(75, 0, 130, 0.9); /* Dark purple footer */
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 24px;
+    }
+    section {
+        padding: 20px 10px;
+    }
+    form {
+        padding: 15px;
+    }
+    nav ul li {
+        margin-left: 15px;
+    }
+}/* Unique Home Page Enhancements */
+header {
+    background: linear-gradient(135deg, #6a0dad 0%, #00bfff 100%);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    animation: pulse 4s infinite; /* Pulsing gradient for uniqueness */
+}
+
+@keyframes pulse {
+    0%, 100% { background: linear-gradient(135deg, #6a0dad 0%, #00bfff 100%); }
+    50% { background: linear-gradient(135deg, #8a2be2 0%, #87ceeb 100%); } /* Slight color shift */
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 90,90 10,90" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+    background-size: 50px 50px;
+    animation: movePattern 20s linear infinite; /* Moving pattern */
+    z-index: 0;
+}
+
+@keyframes movePattern {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(50px); }
+}
+
+header h1, header p {
+    position: relative;
+    z-index: 1;
+}
+
+header p {
+    font-size: 20px;
+    border-right: 2px solid white;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite; /* Typewriter effect */
+}
+
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    from, to { border-color: transparent; }
+    50% { border-color: white; }
+}
+
+/* Floating Icons for Uniqueness */
+.floating-icon {
+    position: absolute;
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.7);
+    animation: float 6s ease-in-out infinite;
+    z-index: 1;
+}
+
+.floating-icon:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-icon:nth-child(2) {
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.floating-icon:nth-child(3) {
+    top: 40%;
+    left: 80%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
