@@ -1,31 +1,84 @@
-// AI Chatbot with ChatGPT Integration
+// Login Protection
+let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+const authOverlay = document.getElementById('auth-overlay');
+const mainContent = document.getElementById('main-content');
+
+function checkAuth() {
+    if (isLoggedIn) {
+        authOverlay.style.display = 'none';
+        mainContent.style.display = 'block';
+    } else {
+        authOverlay.style.display = 'flex';
+        mainContent.style.display = 'none';
+    }
+}
+
+document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(u => u.email === email && u.password === password);
+    if (user) {
+        isLoggedIn = true;
+        localStorage.setItem('isLoggedIn', 'true');
+        checkAuth();
+    } else {
+        document.getElementById('auth-message').textContent = 'Invalid credentials';
+    }
+});
+
+document.getElementById('signup-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('signup-name').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    users.push({ name, email, password });
+    localStorage.setItem('users', JSON.stringify(users));
+    isLoggedIn = true;
+    localStorage.setItem('isLoggedIn', 'true');
+    checkAuth();
+});
+
+document.getElementById('logout-btn').addEventListener('click', () => {
+    isLoggedIn = false;
+    localStorage.removeItem('isLoggedIn');
+    checkAuth();
+});
+
+checkAuth(); // Initial check
+
+// AI Chatbot
 let chatOpen = false;
-const API_KEY = 'YOUR_OPENAI_API_KEY_HERE'; // Replace with your actual API key (keep secret!)
+let conversationHistory = [];
 
 function toggleChat() {
     const window = document.getElementById('chat-window');
     chatOpen = !chatOpen;
     window.style.display = chatOpen ? 'block' : 'none';
     if (chatOpen) {
-        addMessage('AI Assistant: Hello! Ask me anything about the ADCA course.', 'ai');
+        addMessage('AI Assistant: Hello! Ask about ADCA.', 'ai');
     }
 }
 
 function sendMessage() {
     const input = document.getElementById('chat-input');
-    const message = input.value.trim();
+    const message = input.value.trim().toLowerCase();
     if (message) {
-        addMessage('You: ' + message, 'user');
+        addMessage('You: ' + input.value, 'user');
+        conversationHistory.push('User: ' + input.value);
         input.value = '';
-        // Call ChatGPT API
-        getChatGPTResponse(message);
+        const response = getAIResponse(message);
+        setTimeout(() => {
+            addMessage('AI Assistant: ' + response, 'ai');
+            conversationHistory.push('AI: ' + response);
+        }, 500);
     }
 }
 
 function handleKeyPress(event) {
-    if (event.key === 'Enter') {
-        sendMessage();
-    }
+    if (event.key === 'Enter') sendMessage();
 }
 
 function addMessage(text, sender) {
@@ -37,88 +90,32 @@ function addMessage(text, sender) {
     messages.scrollTop = messages.scrollHeight;
 }
 
-async function getChatGPTResponse(userMessage) {
-    try {
-        const response = await fetch('https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium', {  // Free GPT-like model
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${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}`,  // Use Hugging Face token here
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                inputs: {
-                    past_user_inputs: [],  // For conversation history (optional)
-                    generated_responses: [],
-                    text: userMessage
-                },
-                parameters: { max_length: 100, temperature: 0.7 }
-            })
-        });
-        const data = await response.json();
-        if (data && data.generated_text) {
-            addMessage('AI Assistant: ' + data.generated_text, 'ai');
-        } else {
-            addMessage('AI Assistant: Sorry, I couldn\'t process that. Try again!', 'ai');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        addMessage('AI Assistant: Error connecting to AI. Check your token or try later.', 'ai');
+function getAIResponse(message) {
+    const responses = {
+        'hello': 'Hi! How can I help with ADCA?',
+        'what is adca': 'ADCA is Advanced Diploma in Computer Applications.',
+        'enroll': 'Contact us to enroll!',
+        'default': 'Ask about features or contact.'
+    };
+    for (let key in responses) {
+        if (message.includes(key)) return responses[key];
     }
-}// Login Protection Logic
-function checkLoginStatus() {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'true') {
-        document.getElementById('auth-section').style.display = 'none';
-        document.getElementById('main-content').style.display = 'block';
-    } else {
-        document.getElementById('auth-section').style.display = 'block';
-        document.getElementById('main-content').style.display = 'none';
-    }
+    return responses['default'];
 }
 
-function logout() {
-    localStorage.removeItem('isLoggedIn');
-    checkLoginStatus();
+// AI Tools
+function generateQuiz() {
+    const quiz = '<h3>AI Quiz: What is Python?</h3><p>A) Snake B) Language C) Food</p><p>Answer: B</p>';
+    document.getElementById('quiz-output').innerHTML = quiz;
 }
 
-// Call on page load
-window.onload = checkLoginStatus;
+function suggestImage() {
+    const suggestion = 'AI Suggestion: A computer with code on screen.';
+    document.getElementById('image-suggestion').innerHTML = `<p>${suggestion}</p>`;
+}
 
-// Update login to set status
-document.getElementById('login').addEventListener('submit', function(e) {
+// Contact Form
+document.getElementById('contact-form').addEventListener('submit', (e) => {
     e.preventDefault();
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const user = users.find(u => u.email === email && u.password === password);
-    if (user) {
-        localStorage.setItem('isLoggedIn', 'true');
-        document.getElementById('login-message').textContent = 'Login successful! Welcome, ' + user.name + '.';
-        checkLoginStatus(); // Show main content
-    } else {
-        document.getElementById('login-message').textContent = 'Invalid email or password.';
-    }
-});
-
-// Update signup to set status after signup
-document.getElementById('signup').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('signup-name').value;
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
-    const confirm = document.getElementById('signup-confirm').value;
-    if (password !== confirm) {
-        document.getElementById('signup-message').textContent = 'Passwords do not match.';
-        return;
-    }
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    if (users.find(u => u.email === email)) {
-        document.getElementById('signup-message').textContent = 'Email already registered.';
-        return;
-    }
-    users.push({ name, email, password });
-    localStorage.setItem('users', JSON.stringify(users));
-    localStorage.setItem('isLoggedIn', 'true'); // Auto-login after signup
-    document.getElementById('signup-message').textContent = 'Signup successful! Logging you in...';
-    checkLoginStatus(); // Show main content
+    alert('Message sent! (Demo)');
 });
