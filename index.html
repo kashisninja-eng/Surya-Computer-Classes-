@@ -3,102 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADCA Course - Login Required</title>
+    <title>ADCA Course - Professional Learning Platform</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Main Site Content (Hidden by Default) -->
-    <div id="main-content" style="display: none;">
-        <header>
-            <h1>ADCA Course</h1>
-            <p>Master Advanced Computer Applications with AI Assistance</p>
-            <button id="logout-btn" onclick="logout()">Logout</button>
-        </header>
-        <header>
-        <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignments - ADCA Course</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>SURYA COMPUTER CLASSES</h1>
+    <!-- Login Protection Overlay (Hidden after login) -->
+    <div id="auth-overlay" class="overlay">
+        <div class="auth-container">
+            <h1>Login to Access ADCA Course</h1>
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <form id="signup-form">
+                <input type="text" id="signup-name" placeholder="Full Name" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+                <button type="submit">Signup</button>
+            </form>
+            <p id="auth-message"></p>
+        </div>
+    </div>
+    
+
+    <!-- Main Website Content (Shown after login) -->
+    <div id="main-content">
+       <header>
+        <h1>COMPUTER INSTIUTE</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="syllabus.html">Syllabus</a>
             <a href="resources.html">Resources</a>
             <a href="assignments.html">Assignments</a>
             <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-    </header>
-        <main>
-        <section>
-            <h2>Welcome to ADCA Course</h2>
-            <p>Master computer applications with hands-on training in MS Office, programming, databases,tally and more. Duration: 12 months. Mode: Online/Offline.</p>
-            <img src="https://raw.githubusercontent.com/kashisninja-eng/Surya-Computer-Classes-/main/photo_2025-11-08_18-58-20%20(2).jpg" alt="chandan0" style="max-width: 300px;"><!-- Add your image -->
+            <li><button id="logout-btn">Logout</button></li>
+            </nav>
+            <div class="hero">
+                <h1>SURYA COMPUTER CLASSES</h1>
+                <p>Master computer applications with hands-on training in MS Office, programming, databases,tally and more. Duration: 12 months. Mode: Online/Offline.</p>
+                <a href="#features" class="cta-btn">Explore Features</a>
+            </div>
+        </header>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About the Course</h2>
+                <p>Our ADCA course is designed for professionals seeking expertise in computer applications. Learn programming, databases, and AI in a structured, industry-relevant curriculum.</p>
+                <img src="https://via.placeholder.com/600x300?text=Course+Overview" alt="Course Overview" class="section-img">
+            </div>
         </section>
-        <section>
-            <h2>Latest Announcements</h2>
-            <p>Enrollments open! Classes start Jan 15. Check syllabus for details.</p>
+
+        <section id="features" class="section bg-light">
+            <div class="container">
+                <h2>Course Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Programming</h3>
+                        <p>Master Python and Java for real-world applications.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Databases</h3>
+                        <p>Learn SQL and data management with hands-on projects.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Web Development</h3>
+                        <p>Build responsive websites with modern tools.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>AI Integration</h3>
+                        <p>Explore machine learning basics and AI tools.</p>
+                    </div>
+                </div>
+            </div>
         </section>
-    </main> 
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>Email: c7motivational345@gmail.com | Phone: 7761969351</p>
+
+        <section id="ai-tools" class="section">
+            <div class="container">
+                <h2>AI-Powered Tools</h2>
+                <button class="tool-btn" onclick="generateQuiz()">Generate AI Quiz</button>
+                <div id="quiz-output"></div>
+                <button class="tool-btn" onclick="suggestImage()">AI Image Suggestion</button>
+                <div id="image-suggestion"></div>
+            </div>
         </section>
-        
-        <!-- Chatbot -->
+
+        <section id="contact" class="section bg-light">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <form id="contact-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+                <p>Email: c7motivational345@gmail.com | Phone: 7761969351</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 SURYA COMPUTER CLASSES. All rights reserved.</p>
+        </footer>
+
+        <!-- AI Chatbot -->
         <div id="chatbot">
-            <div id="chat-icon" onclick="toggleChat()">🤖</div>
+            <div id="chat-icon" onclick="toggleChat()">💬</div>
             <div id="chat-window">
                 <div id="chat-messages"></div>
-                <input type="text" id="chat-input" placeholder="Ask AI about ADCA..." onkeypress="handleKeyPress(event)">
+                <input type="text" id="chat-input" placeholder="Ask about ADCA..." onkeypress="handleKeyPress(event)">
                 <button onclick="sendMessage()">Send</button>
             </div>
         </div>
     </div>
-    
-    <!-- Login/Signup Section (Visible by Default) -->
-    <div id="auth-section">
-        <header>
-            <h1>ADCA Course - Login Required</h1>
-            <p>Please login or signup to access the site.</p>
-        </header>
-        
-        <section id="auth">
-            <div id="login-form">
-                <h2>1. Login</h2>
-                <form id="login">
-                    <label for="login-email">1. Email:</label>
-                    <input type="email" id="login-email" required>
-                    <label for="login-password">2. Password:</label>
-                    <input type="password" id="login-password" required>
-                    <button type="submit">Login</button>
-                </form>
-                <p id="login-message"></p>
-            </div>
-            
-            <div id="signup-form">
-                <h2>2. Signup (Step-by-Step)</h2>
-                <form id="signup">
-                    <label for="signup-name">1. Full Name:</label>
-                    <input type="text" id="signup-name" required>
-                    <label for="signup-email">2. Email:</label>
-                    <input type="email" id="signup-email" required>
-                    <label for="signup-password">3. Password:</label>
-                    <input type="password" id="signup-password" required>
-                    <label for="signup-confirm">4. Confirm Password:</label>
-                    <input type="password" id="signup-confirm" required>
-                    <button type="submit">Signup</button>
-                </form>
-                <p id="signup-message"></p>
-            </div>
-        </section>
-    </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
-
