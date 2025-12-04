@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload - [Your Website Name]</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your existing CSS file -->
+</head>
+<body>
+    <!-- Include your site's header and navigation here (copy from your main pages) -->
+    <header>
+        <h1>ADCA Resources</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="syllabus.html">Syllabus</a>
+            <a href="resources.html">Resources</a>
+            <a href="assignments.html">Assignments</a>
+            <a href="contact.html">Contact</a>
+            <a href="Student Portal.html">Student Portal</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="upload-container">
+            <h2>Submit Your File</h2>
+            <p>Students: Upload your assignments or files here. Allowed formats: PDF, DOC, DOCX, JPG, PNG (max 5MB).</p>
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                <label for="student-name">Your Name:</label>
+                <input type="text" id="student-name" name="student_name" required>
+                
+                <label for="file">Select File:</label>
+                <input type="file" id="file" name="uploaded_file" accept=".pdf,.doc,.docx,.jpg,.png" required>
+                
+                <button type="submit">Send File</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Include your site's footer here -->
+    <footer>
+                <p>&copy; 2025 SURYA COMPUTER CLASSES. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script> <!-- If you have existing JS -->
+</body>
+</html>
