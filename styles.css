@@ -184,4 +184,65 @@ footer {
     .gallery {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
+}/* Existing styles from your site (don't change these) */
+
+/* New styles for upload form */
+.upload-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white; /* Or match your site's background */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    /* Optional: Reuse animation from login page */
+    animation: fadeIn 1s ease-in-out;
+}
+
+.upload-container h2 {
+    color: #333; /* Match your site's heading color */
+}
+
+.upload-container p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.upload-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-container label {
+    margin-top: 1rem;
+    font-weight: bold;
+    text-align: left;
+}
+
+.upload-container input {
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.upload-container button {
+    padding: 0.8rem;
+    background: #667eea; /* Match your site's button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.3s;
+}
+
+.upload-container button:hover {
+    background: #5a67d8; /* Match hover effect */
+}
+
+/* If you have the fadeIn keyframe from before, it's already there; otherwise, add it */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
