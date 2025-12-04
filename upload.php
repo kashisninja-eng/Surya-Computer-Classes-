@@ -8,7 +8,7 @@ $uploadDir = __DIR__ . '/uploads/'; // Folder to save files
 $maxFileSize = 5 * 1024 * 1024; // 5MB max
 $allowedTypes = ['pdf', 'doc', 'docx', 'jpg', 'png'];
 $logFile = __DIR__ . '/upload_log.txt'; // Log file for notifications
-$yourEmail = 'c7motivational345@gmail.com'; // Replace with your real email
+$yourEmail = 'kashisninja@gmail.com'; // Replace with your real email
 
 // Create uploads folder if needed
 if (!is_dir($uploadDir)) {
@@ -62,4 +62,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     die("Invalid request.");
 }
+
 ?>
