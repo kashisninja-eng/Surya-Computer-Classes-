@@ -118,4 +118,24 @@ function suggestImage() {
 document.getElementById('contact-form').addEventListener('submit', (e) => {
     e.preventDefault();
     alert('Message sent! (Demo)');
-});
+});// Existing JS from your site (if any)
+
+// File upload validation
+const fileInput = document.querySelector('input[type="file"]');
+if (fileInput) {
+    fileInput.addEventListener('change', () => {
+        const file = fileInput.files[0];
+        if (file) {
+            if (file.size > 5 * 1024 * 1024) {
+                alert('File too large! Max 5MB.');
+                fileInput.value = ''; // Clear selection
+            }
+            const allowedExts = ['pdf', 'doc', 'docx', 'jpg', 'png'];
+            const ext = file.name.split('.').pop().toLowerCase();
+            if (!allowedExts.includes(ext)) {
+                alert('Invalid file type!');
+                fileInput.value = '';
+            }
+        }
+    });
+}
